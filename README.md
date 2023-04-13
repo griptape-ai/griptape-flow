@@ -25,10 +25,10 @@ Please refer to [Griptape Docs](https://griptape.readthedocs.io) for:
 - Contribution guidelines.
 
 ## Quick Start
-First, install Skatepark with `pip`:
+First, install Skatepark and Griptape Tools:
 
 ```
-pip install skatepark-lib
+pip install skatepark-lib griptape-tools
 ```
 
 Second, configure an OpenAI client by [getting an API key](https://beta.openai.com/account/api-keys) and adding it to your environment as `OPENAI_API_KEY`. Skatepark uses [OpenAI Completions API](https://platform.openai.com/docs/guides/completion) to execute LLM prompts and to work with [LlamaIndex](https://gpt-index.readthedocs.io/en/latest/index.html) data structures.
