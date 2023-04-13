@@ -4,7 +4,6 @@ from skatepark.utils import TiktokenTokenizer
 from skatepark.steps import PromptStep, ToolStep, ToolkitStep, Step
 from skatepark.structures import Workflow
 from skatepark.schemas import WorkflowSchema
-from skatepark.tools import PingPongTool, CalculatorTool, DataScientistTool, EmailSenderTool, WikiTool
 
 
 class TestWorkflowSchema:
@@ -21,19 +20,16 @@ class TestWorkflowSchema:
         )
 
         tools = [
-            PingPongTool(),
-            CalculatorTool(),
-            DataScientistTool(),
-            EmailSenderTool(host="localhost", port=1025, from_email="test@skateparktest.com", use_ssl=False),
-            WikiTool()
+            "calculator",
+            "google_search"
         ]
 
         workflow.add_steps(
             PromptStep("test prompt"),
-            ToolStep("test tool prompt", tool=PingPongTool())
+            ToolStep("test tool prompt", tool_name="calculator")
         )
 
-        step = ToolkitStep("test router step", tools=tools)
+        step = ToolkitStep("test router step", tool_names=tools)
 
         workflow.steps[0].add_child(step)
         workflow.steps[1].add_child(step)
@@ -46,7 +42,7 @@ class TestWorkflowSchema:
         assert workflow_dict["steps"][0]["child_ids"][0] == step.id
         assert workflow.steps[0].id in step.parent_ids
         assert workflow.steps[1].id in step.parent_ids
-        assert len(workflow_dict["steps"][-1]["tools"]) == 5
+        assert len(workflow_dict["steps"][-1]["tool_names"]) == 2
         assert workflow_dict["prompt_driver"]["temperature"] == 0.12345
         assert workflow_dict["prompt_driver"]["tokenizer"]["stop_sequence"] == "<test>"
         assert workflow_dict["rules"][0]["value"] == "test rule 1"
@@ -64,19 +60,16 @@ class TestWorkflowSchema:
         )
 
         tools = [
-            PingPongTool(),
-            CalculatorTool(),
-            DataScientistTool(),
-            EmailSenderTool(host="localhost", port=1025, from_email="test@skateparktest.com", use_ssl=False),
-            WikiTool()
+            "calculator",
+            "google_search"
         ]
 
         workflow.add_steps(
             PromptStep("test prompt"),
-            ToolStep("test tool prompt", tool=PingPongTool())
+            ToolStep("test tool prompt", tool_name="calculator")
         )
 
-        step = ToolkitStep("test router step", tools=tools)
+        step = ToolkitStep("test router step", tool_names=tools)
 
         workflow.steps[0].add_child(step)
         workflow.steps[1].add_child(step)
@@ -89,7 +82,7 @@ class TestWorkflowSchema:
         assert deserialized_workflow.steps[0].child_ids[0] == step.id
         assert deserialized_workflow.steps[0].id in step.parent_ids
         assert deserialized_workflow.steps[1].id in step.parent_ids
-        assert len(deserialized_workflow.steps[-1].tools) == 5
+        assert len(deserialized_workflow.steps[-1].tool_names) == 2
         assert deserialized_workflow.prompt_driver.temperature == 0.12345
         assert deserialized_workflow.prompt_driver.tokenizer.stop_sequence == "<test>"
         assert deserialized_workflow.rules[0].value == "test rule 1"

@@ -8,7 +8,7 @@ from typing import Optional, Union, TYPE_CHECKING
 from attr import define, field, Factory
 from rich.logging import RichHandler
 from skatepark.drivers import PromptDriver, OpenAiPromptDriver
-from skatepark.utils import J2
+from skatepark.utils import J2, ToolLoader
 
 if TYPE_CHECKING:
     from skatepark.rules import Rule
@@ -25,6 +25,8 @@ class Structure(ABC):
     rules: list[Rule] = field(factory=list, kw_only=True)
     steps: list[Step] = field(factory=list, kw_only=True)
     custom_logger: Optional[Logger] = field(default=None, kw_only=True)
+    logger_level: int = field(default=logging.INFO, kw_only=True)
+    tool_loader: ToolLoader = field(default=ToolLoader(), kw_only=True)
 
     _execution_args: tuple = ()
     _logger: Optional[Logger] = None
@@ -46,6 +48,7 @@ class Structure(ABC):
                 self._logger = logging.getLogger(self.LOGGER_NAME)
 
                 self._logger.propagate = False
+                self._logger.level = self.logger_level
 
                 self._logger.handlers = [
                     RichHandler(
@@ -72,14 +75,9 @@ class Structure(ABC):
         return [self.add_step(s) for s in steps]
 
     def prompt_stack(self, step: Step) -> list[str]:
-        from skatepark.steps import ToolStep, ToolkitStep
+        from skatepark.steps import BaseToolStep
 
-        if isinstance(step, ToolStep):
-            tools = [step.tool]
-        elif isinstance(step, ToolkitStep):
-            tools = step.tools
-        else:
-            tools = []
+        tools = step.tools if isinstance(step, BaseToolStep) else []
 
         stack = [
             J2("prompts/context.j2").render(
