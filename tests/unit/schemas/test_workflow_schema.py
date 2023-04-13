@@ -1,7 +1,7 @@
 from skatepark.drivers import OpenAiPromptDriver
 from skatepark.rules import Rule
 from skatepark.utils import TiktokenTokenizer
-from skatepark.steps import PromptStep, ToolStep, ToolkitStep, Step
+from skatepark.steps import PromptStep, ToolkitStep
 from skatepark.structures import Workflow
 from skatepark.schemas import WorkflowSchema
 
@@ -26,7 +26,7 @@ class TestWorkflowSchema:
 
         workflow.add_steps(
             PromptStep("test prompt"),
-            ToolStep("test tool prompt", tool_name="calculator")
+            ToolkitStep("test tool prompt", tool_names=["calculator"])
         )
 
         step = ToolkitStep("test router step", tool_names=tools)
@@ -66,7 +66,7 @@ class TestWorkflowSchema:
 
         workflow.add_steps(
             PromptStep("test prompt"),
-            ToolStep("test tool prompt", tool_name="calculator")
+            ToolkitStep("test tool prompt", tool_names=["calculator"])
         )
 
         step = ToolkitStep("test router step", tool_names=tools)

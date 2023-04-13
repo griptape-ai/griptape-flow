@@ -11,7 +11,6 @@ from skatepark.schemas.drivers.openai_prompt_driver_schema import OpenAiPromptDr
 
 from skatepark.schemas.steps.step_schema import StepSchema
 from skatepark.schemas.steps.prompt_step_schema import PromptStepSchema
-from skatepark.schemas.steps.tool_step_schema import ToolStepSchema
 from skatepark.schemas.steps.toolkit_step_schema import ToolkitStepSchema
 
 from skatepark.schemas.summarizers.summarizer_schema import SummarizerSchema
@@ -40,7 +39,6 @@ __all__ = [
 
     "StepSchema",
     "PromptStepSchema",
-    "ToolStepSchema",
     "ToolkitStepSchema",
 
     "SummarizerSchema",

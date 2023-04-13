@@ -1,6 +1,6 @@
 from skatepark.drivers import OpenAiPromptDriver
 from skatepark.utils import TiktokenTokenizer
-from skatepark.steps import PromptStep, ToolStep, ToolkitStep, Step
+from skatepark.steps import PromptStep, ToolkitStep, Step
 from skatepark.structures import Pipeline
 from skatepark.schemas import PipelineSchema
 
@@ -20,7 +20,7 @@ class TestPipelineSchema:
             "google_search"
         ]
 
-        tool_step = ToolStep("test tool prompt", tool_name="calculator")
+        tool_step = ToolkitStep("test tool prompt", tool_names=["calculator"])
 
         pipeline.add_steps(
             PromptStep("test prompt"),
@@ -53,7 +53,7 @@ class TestPipelineSchema:
             "google_search"
         ]
 
-        tool_step = ToolStep("test tool prompt", tool_name="calculator")
+        tool_step = ToolkitStep("test tool prompt", tool_names=["calculator"])
 
         pipeline.add_steps(
             PromptStep("test prompt"),

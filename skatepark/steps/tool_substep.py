@@ -12,7 +12,7 @@ from skatepark.utils import J2
 
 if TYPE_CHECKING:
     from skatepark.artifacts import StructureArtifact
-    from skatepark.steps import BaseToolStep
+    from skatepark.steps import ToolkitStep
 
 
 @define
@@ -22,7 +22,7 @@ class ToolSubstep(PromptStep):
     OUTPUT_PATTERN = r"^Output:\s?([\s\S]*)$"
     INVALID_ACTION_ERROR_MSG = f"invalid action input, try again"
 
-    tool_step_id: Optional[str] = field(default=None, kw_only=True)
+    parent_step_id: Optional[str] = field(default=None, kw_only=True)
     thought: Optional[str] = field(default=None, kw_only=True)
     tool_name: Optional[str] = field(default=None, kw_only=True)
     tool_action: Optional[str] = field(default=None, kw_only=True)
@@ -30,22 +30,22 @@ class ToolSubstep(PromptStep):
 
     _tool: Optional[BaseTool] = None
 
-    def attach(self, tool_step: BaseToolStep):
-        self.tool_step_id = tool_step.id
-        self.structure = tool_step.structure
+    def attach(self, parent_step: ToolkitStep):
+        self.parent_step_id = parent_step.id
+        self.structure = parent_step.structure
         self.__init_from_prompt(self.render_prompt())
 
     @property
-    def tool_step(self) -> Optional[BaseToolStep]:
-        return self.structure.find_step(self.tool_step_id)
+    def toolkit_step(self) -> Optional[ToolkitStep]:
+        return self.structure.find_step(self.parent_step_id)
 
     @property
     def parents(self) -> list[ToolSubstep]:
-        return [self.tool_step.find_substep(parent_id) for parent_id in self.parent_ids]
+        return [self.toolkit_step.find_substep(parent_id) for parent_id in self.parent_ids]
 
     @property
     def children(self) -> list[ToolSubstep]:
-        return [self.tool_step.find_substep(child_id) for child_id in self.child_ids]
+        return [self.toolkit_step.find_substep(child_id) for child_id in self.child_ids]
 
     def before_run(self) -> None:
         self.structure.logger.info(f"Substep {self.id}\n{self.render_prompt()}")
@@ -119,7 +119,7 @@ class ToolSubstep(PromptStep):
 
                 # Load the tool itself
                 if self.tool_name:
-                    self._tool = self.tool_step.find_tool(self.tool_name)
+                    self._tool = self.toolkit_step.find_tool(self.tool_name)
 
                 # Validate input based on tool schema
                 if self._tool:
@@ -135,17 +135,17 @@ class ToolSubstep(PromptStep):
                     self.tool_value = str(parsed_value.get("value"))
 
             except SyntaxError as e:
-                self.structure.logger.error(f"Step {self.tool_step.id}\nSyntax error: {e}")
+                self.structure.logger.error(f"Step {self.toolkit_step.id}\nSyntax error: {e}")
 
                 self.tool_name = "error"
                 self.tool_value = f"syntax error: {e}"
             except ValidationError as e:
-                self.structure.logger.error(f"Step {self.tool_step.id}\nInvalid JSON: {e}")
+                self.structure.logger.error(f"Step {self.toolkit_step.id}\nInvalid JSON: {e}")
 
                 self.tool_name = "error"
                 self.tool_value = f"JSON validation error: {e}"
             except Exception as e:
-                self.structure.logger.error(f"Step {self.tool_step.id}\nError parsing tool action: {e}")
+                self.structure.logger.error(f"Step {self.toolkit_step.id}\nError parsing tool action: {e}")
 
                 self.tool_name = "error"
                 self.tool_value = f"error: {self.INVALID_ACTION_ERROR_MSG}"

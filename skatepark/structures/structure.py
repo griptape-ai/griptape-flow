@@ -75,9 +75,9 @@ class Structure(ABC):
         return [self.add_step(s) for s in steps]
 
     def prompt_stack(self, step: Step) -> list[str]:
-        from skatepark.steps import BaseToolStep
+        from skatepark.steps import ToolkitStep
 
-        tools = step.tools if isinstance(step, BaseToolStep) else []
+        tools = step.tools if isinstance(step, ToolkitStep) else []
 
         stack = [
             J2("prompts/context.j2").render(
