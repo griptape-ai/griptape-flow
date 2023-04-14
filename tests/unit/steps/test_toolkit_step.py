@@ -43,7 +43,7 @@ class TestToolkitStep:
         assert len(step._substeps) == 3
         assert isinstance(step.output, ErrorOutput)
 
-    def test_init_from_prompt(self):
+    def test_init_from_prompt_1(self):
         valid_input = """Thought: need to test\nAction: {"tool": "test", "action": "test action", "value": "test input"}\nObservation: test 
         observation\nOutput: test output"""
         step = ToolkitStep("test", tool_names=["Calculator"])
@@ -56,6 +56,21 @@ class TestToolkitStep:
         assert substep.tool_name == "test"
         assert substep.tool_action == "test action"
         assert substep.tool_value == "test input"
+        assert substep.output is None
+
+    def test_init_from_prompt_2(self):
+        valid_input = """Thought: need to test\nObservation: test 
+        observation\nOutput: test output"""
+        step = ToolkitStep("test", tool_names=["Calculator"])
+
+        Pipeline().add_step(step)
+
+        substep = step.add_substep(ToolSubstep(valid_input))
+
+        assert substep.thought == "need to test"
+        assert substep.tool_name is None
+        assert substep.tool_action is None
+        assert substep.tool_value is None
         assert substep.output.value == "test output"
 
     def test_add_substep(self):

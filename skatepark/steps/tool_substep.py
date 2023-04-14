@@ -149,6 +149,5 @@ class ToolSubstep(PromptStep):
 
                 self.tool_name = "error"
                 self.tool_value = f"error: {self.INVALID_ACTION_ERROR_MSG}"
-
-        if self.output is None and len(output_matches) > 0:
+        elif self.output is None and len(output_matches) > 0:
             self.output = TextOutput(output_matches[-1])
