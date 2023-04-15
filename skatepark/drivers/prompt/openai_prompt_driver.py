@@ -13,7 +13,7 @@ class OpenAiPromptDriver(PromptDriver):
     api_type: str = field(default=openai.api_type, kw_only=True)
     api_version: Optional[str] = field(default=openai.api_version, kw_only=True)
     api_base: str = field(default=openai.api_base, kw_only=True)
-    api_key: str = field(default=openai.api_key, kw_only=True)
+    api_key: Optional[str] = field(default=openai.api_key, kw_only=True)
     organization: Optional[str] = field(default=openai.organization, kw_only=True)
     model: str = field(default=TiktokenTokenizer.DEFAULT_MODEL, kw_only=True)
     tokenizer: TiktokenTokenizer = field(

@@ -6,7 +6,7 @@ class OpenAiPromptDriverSchema(PromptDriverSchema):
     api_type = fields.Str()
     api_version = fields.Str(allow_none=True)
     api_base = fields.Str()
-    api_key = fields.Str()
+    api_key = fields.Str(allow_none=True)
     organization = fields.Str(allow_none=True)
     model = fields.Str()
     temperature = fields.Float()
