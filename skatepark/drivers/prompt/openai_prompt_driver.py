@@ -1,13 +1,20 @@
 import json
+from typing import Optional
+
 import openai
 from attr import define, field, Factory
+from skatepark.artifacts import TextOutput
 from skatepark.drivers import PromptDriver
 from skatepark.utils import TiktokenTokenizer
-from skatepark.artifacts import TextOutput
 
 
 @define
 class OpenAiPromptDriver(PromptDriver):
+    api_type: str = field(default=openai.api_type, kw_only=True)
+    api_version: Optional[str] = field(default=openai.api_version, kw_only=True)
+    api_base: str = field(default=openai.api_base, kw_only=True)
+    api_key: str = field(default=openai.api_key, kw_only=True)
+    organization: Optional[str] = field(default=openai.organization, kw_only=True)
     model: str = field(default=TiktokenTokenizer.DEFAULT_MODEL, kw_only=True)
     tokenizer: TiktokenTokenizer = field(
         default=Factory(lambda self: TiktokenTokenizer(model=self.model), takes_self=True),
@@ -15,6 +22,13 @@ class OpenAiPromptDriver(PromptDriver):
     )
     temperature: float = field(default=0.5, kw_only=True)
     user: str = field(default="", kw_only=True)
+
+    def __attrs_post_init__(self):
+        openai.api_type = self.api_type
+        openai.api_version = self.api_version
+        openai.api_base = self.api_base
+        openai.api_key = self.api_key
+        openai.organization = self.organization
 
     def try_run(self, value: any) -> TextOutput:
         if self.tokenizer.is_chat():
