@@ -124,9 +124,7 @@ class ToolSubstep(PromptStep):
                 # Validate input based on tool schema
                 if self._tool:
                     validate(
-                        instance={
-                            "value": parsed_value["value"]
-                        },
+                        instance=parsed_value["value"],
                         schema=self._tool.action_schema(getattr(self._tool, self.tool_action))
                     )
 
