@@ -19,7 +19,6 @@ class OpenAiPromptDriver(PromptDriver):
         default=Factory(lambda self: TiktokenTokenizer(model=self.model), takes_self=True),
         kw_only=True
     )
-    temperature: float = field(default=0.5, kw_only=True)
     user: str = field(default="", kw_only=True)
 
     def __attrs_post_init__(self):

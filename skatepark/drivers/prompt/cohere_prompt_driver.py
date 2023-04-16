@@ -21,6 +21,7 @@ class CoherePromptDriver(PromptDriver):
         result = self.client.generate(
             value,
             model=self.model,
+            temperature=self.temperature,
             end_sequences=[self.tokenizer.stop_sequence, "Input:"],
             max_tokens=self.tokenizer.tokens_left(value)
         )
