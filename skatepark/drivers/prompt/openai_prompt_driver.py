@@ -1,6 +1,5 @@
 import json
 from typing import Optional
-
 import openai
 from attr import define, field, Factory
 from skatepark.artifacts import TextOutput

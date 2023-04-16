@@ -27,26 +27,6 @@ class TiktokenTokenizer(Tokenizer):
     model: str = field(default=DEFAULT_MODEL, kw_only=True)
     stop_sequence: str = field(default=Tokenizer.DEFAULT_STOP_SEQUENCE, kw_only=True)
 
-    def encode(self, text: str) -> list[int]:
-        return self.encoding.encode(text, allowed_special={self.stop_sequence})
-
-    def decode(self, tokens: list[int]) -> str:
-        return self.encoding.decode(tokens)
-
-    def token_count(self, text: str) -> int:
-        return len(self.encode(text))
-
-    def tokens_left(self, text: str) -> int:
-        diff = self.max_tokens - self.token_count(text)
-
-        if diff > 0:
-            return diff
-        else:
-            return 0
-
-    def is_chat(self) -> bool:
-        return next(p for p in self.CHAT_API_PREFIXES if self.model.startswith(p)) is not None
-
     @property
     def encoding(self) -> tiktoken.Encoding:
         try:
@@ -59,3 +39,12 @@ class TiktokenTokenizer(Tokenizer):
         tokens = next(v for k, v in self.MODEL_PREFIXES_TO_MAX_TOKENS.items() if self.model.startswith(k))
 
         return (tokens if tokens else self.DEFAULT_MAX_TOKENS) - self.TOKEN_OFFSET
+
+    def encode(self, text: str) -> list[int]:
+        return self.encoding.encode(text, allowed_special={self.stop_sequence})
+
+    def decode(self, tokens: list[int]) -> str:
+        return self.encoding.decode(tokens)
+
+    def is_chat(self) -> bool:
+        return next(p for p in self.CHAT_API_PREFIXES if self.model.startswith(p)) is not None
