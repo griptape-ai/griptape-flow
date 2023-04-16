@@ -39,7 +39,6 @@ With Skatepark, you can create *structures*, such as `Pipelines` and `Workflows`
 from decouple import config
 from griptape.tools import WebScraper, Calculator
 from skatepark import utils
-from skatepark.drivers import OpenAiPromptDriver
 from skatepark.memory import PipelineMemory
 from skatepark.steps import PromptStep, ToolkitStep
 from skatepark.structures import Pipeline
@@ -53,9 +52,6 @@ calculator = Calculator()
 
 pipeline = Pipeline(
     memory=PipelineMemory(),
-    prompt_driver=OpenAiPromptDriver(
-        model="gpt-4"
-    ),
     tool_loader=ToolLoader(
         tools=[calculator, scraper]
     )
