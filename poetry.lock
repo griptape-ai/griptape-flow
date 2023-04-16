@@ -837,14 +837,14 @@ test = ["objgraph", "psutil"]
 
 [[package]]
 name = "griptape-core"
-version = "0.7.3"
+version = "0.8.0"
 description = "Python framework for LLM middleware tools. Build once, run anywhere."
 category = "main"
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "griptape_core-0.7.3-py3-none-any.whl", hash = "sha256:c64f218a60e5e9c2c637c0fd11d99d29e7fa8c7c9aafd198272b0e1994e858b9"},
-    {file = "griptape_core-0.7.3.tar.gz", hash = "sha256:eca1357884255604e9e97e8bdfba2fa1aaddf98f22eebbf42a1255f5de4bea9f"},
+    {file = "griptape_core-0.8.0-py3-none-any.whl", hash = "sha256:7a5026a3b6f94e17b49705f04971c3ddf46ad6c87dfcdc4e31877f05a5797221"},
+    {file = "griptape_core-0.8.0.tar.gz", hash = "sha256:b5ed8eb3ddeb53b104348a63412cd2e4822dc6e2ec7b9b85ffe9faf6bdd0dcd5"},
 ]
 
 [package.dependencies]
@@ -862,18 +862,18 @@ uvicorn = ">=0.20"
 
 [[package]]
 name = "griptape-tools"
-version = "0.5.3"
+version = "0.6.0"
 description = "Tools for the griptape-core package."
 category = "dev"
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "griptape_tools-0.5.3-py3-none-any.whl", hash = "sha256:b25d6bbe12b71ca2e4edbf3dcca913e750df857cc7de180053d82a26ae956ca2"},
-    {file = "griptape_tools-0.5.3.tar.gz", hash = "sha256:a1ee232677eafa4632909334e5b4c0cd203467213fa538c87e5baa2b4bb4287e"},
+    {file = "griptape_tools-0.6.0-py3-none-any.whl", hash = "sha256:da60b28b5c65b44f481e11e45ef015ec1ccc306761ebddd6d8e4d506f72f34ca"},
+    {file = "griptape_tools-0.6.0.tar.gz", hash = "sha256:19b4116b759c10236a5cc5e729a0722518e9c6c528c546615a1f7aba69e2a5cf"},
 ]
 
 [package.dependencies]
-griptape-core = ">=0.7.2"
+griptape-core = ">=0.8.0"
 
 [[package]]
 name = "h11"
@@ -2356,4 +2356,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "edb9813aa387f8bd9765085f2755b764a662bae7dbb8de503e037ce8bc7e04a6"
+content-hash = "9a4c353f028975f40f9309d70e543f19403b1462396c96e41bcb05fa9d0b9085"
