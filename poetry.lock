@@ -808,14 +808,14 @@ test = ["objgraph", "psutil"]
 
 [[package]]
 name = "griptape-core"
-version = "0.9.1"
+version = "0.9.2"
 description = "Python framework for LLM middleware tools. Build once, run anywhere."
 category = "main"
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "griptape_core-0.9.1-py3-none-any.whl", hash = "sha256:301ab61df69a47df1f6b3857699c3ea596128aecf02c8e4c9cba762fd93f28cc"},
-    {file = "griptape_core-0.9.1.tar.gz", hash = "sha256:aff7984a11f45fa29f4d42d2e9bb3e9bb5a70e5a0b782d61ce51510bbb6f449d"},
+    {file = "griptape_core-0.9.2-py3-none-any.whl", hash = "sha256:b00bdbf5ac1fdbda2600b1fdecbb1738aff96b83e10aafd32022b471b66b506a"},
+    {file = "griptape_core-0.9.2.tar.gz", hash = "sha256:79124f5fb94b61e5a9918dc8ae2628a8c7da2f4a4d94c0361ab84a925b50ce5d"},
 ]
 
 [package.dependencies]
@@ -833,18 +833,18 @@ uvicorn = ">=0.20"
 
 [[package]]
 name = "griptape-tools"
-version = "0.6.0"
+version = "0.7.0"
 description = "Tools for the griptape-core package."
 category = "dev"
 optional = false
 python-versions = ">=3.9,<4.0"
 files = [
-    {file = "griptape_tools-0.6.0-py3-none-any.whl", hash = "sha256:da60b28b5c65b44f481e11e45ef015ec1ccc306761ebddd6d8e4d506f72f34ca"},
-    {file = "griptape_tools-0.6.0.tar.gz", hash = "sha256:19b4116b759c10236a5cc5e729a0722518e9c6c528c546615a1f7aba69e2a5cf"},
+    {file = "griptape_tools-0.7.0-py3-none-any.whl", hash = "sha256:35ac561e2ca2a885f8e4aaf9b10cd8684737e6836681c08081c4fdf11ee49fc9"},
+    {file = "griptape_tools-0.7.0.tar.gz", hash = "sha256:7513f56337f5635d4529904934760419397b824fe4ef3b6930ab4e5fc3bd8b01"},
 ]
 
 [package.dependencies]
-griptape-core = ">=0.8.0"
+griptape-core = ">=0.9.2"
 
 [[package]]
 name = "h11"
@@ -2370,4 +2370,4 @@ testing = ["big-O", "flake8 (<5)", "jaraco.functools", "jaraco.itertools", "more
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "951208b8a01d37a4ec4ede5075db4f8aa759e7382b67161d1ca1a3aad47b3926"
+content-hash = "1dc37f17e83f2d01f1945bffed39263ebce626b59d484094058aaae41e6c7bc8"
