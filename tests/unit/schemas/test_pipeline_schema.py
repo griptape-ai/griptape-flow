@@ -1,8 +1,8 @@
-from skatepark.drivers import OpenAiPromptDriver
-from skatepark.utils import TiktokenTokenizer
-from skatepark.steps import PromptStep, ToolkitStep, Step
-from skatepark.structures import Pipeline
-from skatepark.schemas import PipelineSchema
+from griptape.flow.drivers import OpenAiPromptDriver
+from griptape.flow.utils import TiktokenTokenizer
+from griptape.flow.steps import PromptStep, ToolkitStep, Step
+from griptape.flow.structures import Pipeline
+from griptape.flow.schemas import PipelineSchema
 
 
 class TestPipelineSchema:

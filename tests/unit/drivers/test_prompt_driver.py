@@ -1,7 +1,7 @@
 from tests.mocks.mock_failing_driver import MockFailingDriver
-from skatepark.artifacts import ErrorOutput, TextOutput
-from skatepark.steps import PromptStep
-from skatepark.structures import Pipeline
+from griptape.flow.artifacts import ErrorOutput, TextOutput
+from griptape.flow.steps import PromptStep
+from griptape.flow.structures import Pipeline
 
 
 class TestPromptDriver:

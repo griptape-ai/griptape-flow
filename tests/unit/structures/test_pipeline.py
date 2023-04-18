@@ -1,11 +1,11 @@
 import json
-from skatepark.artifacts import TextOutput
-from skatepark.rules import Rule
-from skatepark.utils import TiktokenTokenizer
-from skatepark.steps import PromptStep, Step
-from skatepark.memory import PipelineMemory
+from griptape.flow.artifacts import TextOutput
+from griptape.flow.rules import Rule
+from griptape.flow.utils import TiktokenTokenizer
+from griptape.flow.steps import PromptStep, Step
+from griptape.flow.memory import PipelineMemory
 from tests.mocks.mock_driver import MockDriver
-from skatepark.structures import Pipeline
+from griptape.flow.structures import Pipeline
 
 
 class TestPipeline:

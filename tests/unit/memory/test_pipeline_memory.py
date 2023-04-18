@@ -1,4 +1,4 @@
-from skatepark.memory import PipelineMemory, PipelineRun
+from griptape.flow.memory import PipelineMemory, PipelineRun
 
 
 class TestMemory:

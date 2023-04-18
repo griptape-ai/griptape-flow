@@ -1,7 +1,7 @@
 from attr import define
-from skatepark.drivers import PromptDriver
-from skatepark.utils import TiktokenTokenizer, Tokenizer
-from skatepark.artifacts import TextOutput
+from griptape.flow.drivers import PromptDriver
+from griptape.flow.utils import TiktokenTokenizer, Tokenizer
+from griptape.flow.artifacts import TextOutput
 
 
 @define

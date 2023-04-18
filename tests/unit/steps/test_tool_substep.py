@@ -1,6 +1,6 @@
 import json
-from skatepark.steps import ToolkitStep, ToolSubstep
-from skatepark.structures import Pipeline
+from griptape.flow.steps import ToolkitStep, ToolSubstep
+from griptape.flow.structures import Pipeline
 
 
 class TestToolSubstep:

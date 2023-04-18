@@ -1,9 +1,9 @@
 from griptape.tools import Calculator, WebSearch
-from skatepark.artifacts import ErrorOutput
-from skatepark.steps import ToolkitStep, ToolSubstep
-from skatepark.utils import ToolLoader
+from griptape.flow.artifacts import ErrorOutput
+from griptape.flow.steps import ToolkitStep, ToolSubstep
+from griptape.flow.utils import ToolLoader
 from tests.mocks.mock_value_driver import MockValueDriver
-from skatepark.structures import Pipeline
+from griptape.flow.structures import Pipeline
 
 
 class TestToolkitStep:

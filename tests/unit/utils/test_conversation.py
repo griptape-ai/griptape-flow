@@ -1,8 +1,8 @@
 from tests.mocks.mock_driver import MockDriver
-from skatepark.memory import PipelineMemory
-from skatepark.steps import PromptStep
-from skatepark.structures import Pipeline
-from skatepark.utils import Conversation
+from griptape.flow.memory import PipelineMemory
+from griptape.flow.steps import PromptStep
+from griptape.flow.structures import Pipeline
+from griptape.flow.utils import Conversation
 
 
 class TestConversation:

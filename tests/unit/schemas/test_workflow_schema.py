@@ -1,9 +1,9 @@
-from skatepark.drivers import OpenAiPromptDriver
-from skatepark.rules import Rule
-from skatepark.utils import TiktokenTokenizer
-from skatepark.steps import PromptStep, ToolkitStep
-from skatepark.structures import Workflow
-from skatepark.schemas import WorkflowSchema
+from griptape.flow.drivers import OpenAiPromptDriver
+from griptape.flow.rules import Rule
+from griptape.flow.utils import TiktokenTokenizer
+from griptape.flow.steps import PromptStep, ToolkitStep
+from griptape.flow.structures import Workflow
+from griptape.flow.schemas import WorkflowSchema
 
 
 class TestWorkflowSchema:

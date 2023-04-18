@@ -1,6 +1,6 @@
-from skatepark.steps import PromptStep
-from skatepark.structures import Pipeline
-from skatepark.memory import BufferPipelineMemory
+from griptape.flow.steps import PromptStep
+from griptape.flow.structures import Pipeline
+from griptape.flow.memory import BufferPipelineMemory
 from tests.mocks.mock_driver import MockDriver
 
 

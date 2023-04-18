@@ -1,10 +1,10 @@
 import os
 import pytest
 from tests.mocks.mock_driver import MockDriver
-from skatepark.drivers import DiskMemoryDriver
-from skatepark.memory import PipelineMemory
-from skatepark.steps import PromptStep
-from skatepark.structures import Pipeline
+from griptape.flow.drivers import DiskMemoryDriver
+from griptape.flow.memory import PipelineMemory
+from griptape.flow.steps import PromptStep
+from griptape.flow.structures import Pipeline
 
 
 class TestPromptDriver:

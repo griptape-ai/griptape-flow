@@ -1,8 +1,8 @@
-from skatepark.summarizers import PromptDriverSummarizer
-from skatepark.memory import SummaryPipelineMemory
+from griptape.flow.summarizers import PromptDriverSummarizer
+from griptape.flow.memory import SummaryPipelineMemory
 from tests.mocks.mock_driver import MockDriver
-from skatepark.steps import PromptStep
-from skatepark.structures import Pipeline
+from griptape.flow.steps import PromptStep
+from griptape.flow.structures import Pipeline
 
 
 class TestSummaryMemory:

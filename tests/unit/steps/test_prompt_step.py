@@ -1,6 +1,6 @@
-from skatepark.steps import PromptStep
+from griptape.flow.steps import PromptStep
 from tests.mocks.mock_driver import MockDriver
-from skatepark.structures import Pipeline
+from griptape.flow.structures import Pipeline
 
 
 class TestPromptStep:

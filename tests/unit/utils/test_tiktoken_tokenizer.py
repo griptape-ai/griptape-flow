@@ -1,4 +1,4 @@
-from skatepark.utils import TiktokenTokenizer
+from griptape.flow.utils import TiktokenTokenizer
 
 
 class TestTiktokenTokenizer:

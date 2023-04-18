@@ -1,8 +1,8 @@
 import json
 from tests.mocks.mock_driver import MockDriver
-from skatepark.rules import Rule
-from skatepark.steps import PromptStep, Step
-from skatepark.structures import Workflow
+from griptape.flow.rules import Rule
+from griptape.flow.steps import PromptStep, Step
+from griptape.flow.structures import Workflow
 
 
 class TestWorkflow:

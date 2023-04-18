@@ -1,5 +1,5 @@
 from griptape.tools import Calculator, WebScraper
-from skatepark.utils import ToolLoader
+from griptape.flow.utils import ToolLoader
 
 
 class TestToolLoader:
