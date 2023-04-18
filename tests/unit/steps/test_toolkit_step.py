@@ -1,5 +1,4 @@
 from griptape.tools import Calculator, WebSearch
-
 from skatepark.artifacts import ErrorOutput
 from skatepark.steps import ToolkitStep, ToolSubstep
 from skatepark.utils import ToolLoader
@@ -8,6 +7,14 @@ from skatepark.structures import Pipeline
 
 
 class TestToolkitStep:
+    def test_init(self):
+        assert len(ToolkitStep("test", tool_names=["Calculator", "WebSearch"]).tool_names) == 2
+
+        try:
+            assert ToolkitStep("test", tool_names=["Calculator", "Calculator"])
+        except ValueError:
+            assert True
+
     def test_run(self):
         output = """Output: done"""
 

@@ -19,6 +19,11 @@ class ToolkitStep(PromptStep, ABC):
     max_substeps: int = field(default=DEFAULT_MAX_SUBSTEPS, kw_only=True)
     _substeps: list[ToolSubstep] = field(factory=list)
 
+    @tool_names.validator
+    def validate_tool_names(self, _, tool_names) -> None:
+        if len(tool_names) > len(set(tool_names)):
+            raise ValueError("tool names have to be unique")
+
     @property
     def tools(self) -> list[BaseTool]:
         return [
