@@ -1,5 +1,6 @@
 from __future__ import annotations
 import ast
+import json
 import re
 from typing import TYPE_CHECKING, Optional
 from attr import define, field
@@ -78,6 +79,20 @@ class ToolSubstep(PromptStep):
         return J2("prompts/steps/tool/substep.j2").render(
             substep=self
         )
+
+    def to_json(self) -> str:
+        json_dict = {}
+
+        if self.tool_name:
+            json_dict["tool"] = self.tool_name
+
+        if self.tool_action:
+            json_dict["action"] = self.tool_action
+
+        if self.tool_value:
+            json_dict["value"] = self.tool_value
+
+        return json.dumps(json_dict)
 
     def add_child(self, child: ToolSubstep) -> ToolSubstep:
         if child.id not in self.child_ids:
