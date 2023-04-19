@@ -1,6 +1,6 @@
 from attr import define, field
 import tiktoken
-from griptape.flow.utils import Tokenizer
+from griptape.flow.tokenizers import Tokenizer
 
 
 @define(frozen=True)

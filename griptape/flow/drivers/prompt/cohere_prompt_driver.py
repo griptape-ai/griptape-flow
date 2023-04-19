@@ -2,7 +2,7 @@ import cohere
 from attr import define, field, Factory
 from griptape.flow.artifacts import TextOutput
 from griptape.flow.drivers import PromptDriver
-from griptape.flow.utils import CohereTokenizer
+from griptape.flow.tokenizers import CohereTokenizer
 
 
 @define

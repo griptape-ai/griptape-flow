@@ -2,7 +2,7 @@ import os
 from typing import Optional
 from attr import define, field, Factory
 from jinja2 import Environment, FileSystemLoader
-from griptape.flow.utils import TiktokenTokenizer, Tokenizer
+from griptape.flow.tokenizers import TiktokenTokenizer, Tokenizer
 import griptape
 
 

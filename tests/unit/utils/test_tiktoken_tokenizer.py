@@ -1,4 +1,4 @@
-from griptape.flow.utils import TiktokenTokenizer
+from griptape.flow.tokenizers import TiktokenTokenizer
 
 
 class TestTiktokenTokenizer:

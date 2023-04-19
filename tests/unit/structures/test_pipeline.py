@@ -1,7 +1,7 @@
 import json
 from griptape.flow.artifacts import TextOutput
 from griptape.flow.rules import Rule
-from griptape.flow.utils import TiktokenTokenizer
+from griptape.flow.tokenizers import TiktokenTokenizer
 from griptape.flow.steps import PromptStep, Step
 from griptape.flow.memory import PipelineMemory
 from tests.mocks.mock_driver import MockDriver

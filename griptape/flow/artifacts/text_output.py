@@ -1,7 +1,7 @@
 from typing import Optional
 from attr import define, field
 from griptape.flow.artifacts import StructureArtifact
-from griptape.flow.utils import TiktokenTokenizer, Tokenizer
+from griptape.flow.tokenizers import TiktokenTokenizer, Tokenizer
 
 
 @define(frozen=True)

@@ -8,6 +8,6 @@ class TiktokenTokenizerSchema(BaseSchema):
 
     @post_load
     def make_obj(self, data, **kwargs):
-        from griptape.flow.utils import TiktokenTokenizer
+        from griptape.flow.tokenizers import TiktokenTokenizer
 
         return TiktokenTokenizer(**data)

@@ -1,5 +1,5 @@
 from griptape.flow.drivers import OpenAiPromptDriver
-from griptape.flow.utils import TiktokenTokenizer
+from griptape.flow.tokenizers import TiktokenTokenizer
 from griptape.flow.steps import PromptStep, ToolkitStep, Step
 from griptape.flow.structures import Pipeline
 from griptape.flow.schemas import PipelineSchema

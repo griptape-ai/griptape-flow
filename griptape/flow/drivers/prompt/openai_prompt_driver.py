@@ -4,7 +4,7 @@ import openai
 from attr import define, field, Factory
 from griptape.flow.artifacts import TextOutput
 from griptape.flow.drivers import PromptDriver
-from griptape.flow.utils import TiktokenTokenizer
+from griptape.flow.tokenizers import TiktokenTokenizer
 
 
 @define

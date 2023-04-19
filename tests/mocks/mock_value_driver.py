@@ -1,6 +1,6 @@
 from attr import define
 from griptape.flow.drivers import PromptDriver
-from griptape.flow.utils import TiktokenTokenizer, Tokenizer
+from griptape.flow.tokenizers import TiktokenTokenizer, Tokenizer
 from griptape.flow.artifacts import TextOutput
 
 

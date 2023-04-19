@@ -1,6 +1,6 @@
 import cohere
 from attr import define, field
-from griptape.flow.utils import Tokenizer
+from griptape.flow.tokenizers import Tokenizer
 
 
 @define(frozen=True)
