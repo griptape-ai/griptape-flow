@@ -1,7 +1,6 @@
 from attr import define, field, Factory
 from huggingface_hub import InferenceApi
 from transformers import AutoTokenizer
-
 from griptape.flow.artifacts import TextOutput
 from griptape.flow.drivers import PromptDriver
 from griptape.flow.tokenizers import HuggingFaceTokenizer
@@ -9,7 +8,6 @@ from griptape.flow.tokenizers import HuggingFaceTokenizer
 
 @define
 class HuggingFaceHubPromptDriver(PromptDriver):
-    DEFAULT_TASK = "text-generation"
     SUPPORTED_TASKS = ["text2text-generation", "text-generation"]
     MAX_NEW_TOKENS = 250
     DEFAULT_PARAMS = {
