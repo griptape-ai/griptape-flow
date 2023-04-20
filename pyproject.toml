@@ -26,7 +26,9 @@ graphlib = "*"
 tiktoken = ">=0.3"
 rich = ">=13"
 stopit = "*"
-transformers = ">= 4"
+transformers = ">=4"
+huggingface-hub = ">=0.13"
+torch = ">= 2"
 
 [tool.poetry.group.test.dependencies]
 griptape-tools = ">= 0.6.0"
