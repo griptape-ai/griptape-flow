@@ -1,4 +1,4 @@
-from attr import define, field
+from attr import define, field, Factory
 from griptape.flow.tokenizers import BaseTokenizer
 from transformers import PreTrainedTokenizerBase
 
@@ -6,10 +6,10 @@ from transformers import PreTrainedTokenizerBase
 @define(frozen=True)
 class HuggingFaceTokenizer(BaseTokenizer):
     tokenizer: PreTrainedTokenizerBase = field(kw_only=True)
-
-    @property
-    def max_tokens(self) -> int:
-        return self.tokenizer.model_max_length
+    max_tokens: int = field(
+        default=Factory(lambda self: self.tokenizer.model_max_length, takes_self=True),
+        kw_only=True
+    )
 
     def token_count(self, text: str) -> int:
         return len(self.encode(text))
