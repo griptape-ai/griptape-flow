@@ -1,5 +1,7 @@
 from attr import define, field, Factory
 from huggingface_hub import InferenceApi
+from transformers import AutoTokenizer
+
 from griptape.flow.artifacts import TextOutput
 from griptape.flow.drivers import PromptDriver
 from griptape.flow.tokenizers import HuggingFaceTokenizer
@@ -9,12 +11,12 @@ from griptape.flow.tokenizers import HuggingFaceTokenizer
 class HuggingFaceHubPromptDriver(PromptDriver):
     DEFAULT_TASK = "text-generation"
     SUPPORTED_TASKS = ["text2text-generation", "text-generation"]
+    MAX_NEW_TOKENS = 250
     DEFAULT_PARAMS = {
         "return_full_text": False,
-        "max_new_tokens": 250
+        "max_new_tokens": MAX_NEW_TOKENS
     }
 
-    tokenizer: HuggingFaceTokenizer = field(kw_only=True)
     repo_id: str = field(kw_only=True)
     api_token: str = field(kw_only=True)
     use_gpu: bool = field(default=False, kw_only=True)
@@ -23,6 +25,15 @@ class HuggingFaceHubPromptDriver(PromptDriver):
     client: InferenceApi = field(
         default=Factory(
             lambda self: InferenceApi(repo_id=self.repo_id, token=self.api_token, gpu=self.use_gpu), takes_self=True
+        ),
+        kw_only=True
+    )
+    tokenizer: HuggingFaceTokenizer = field(
+        default=Factory(
+            lambda self: HuggingFaceTokenizer(
+                tokenizer=AutoTokenizer.from_pretrained(self.repo_id),
+                max_tokens=self.MAX_NEW_TOKENS
+            ), takes_self=True
         ),
         kw_only=True
     )
