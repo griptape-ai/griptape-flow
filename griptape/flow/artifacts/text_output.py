@@ -1,13 +1,13 @@
 from typing import Optional
 from attr import define, field
 from griptape.flow.artifacts import StructureArtifact
-from griptape.flow.tokenizers import TiktokenTokenizer, Tokenizer
+from griptape.flow.tokenizers import TiktokenTokenizer, BaseTokenizer
 
 
 @define(frozen=True)
 class TextOutput(StructureArtifact):
     meta: Optional[any] = field(default=None)
-    tokenizer: Tokenizer = field(default=TiktokenTokenizer(), kw_only=True)
+    tokenizer: BaseTokenizer = field(default=TiktokenTokenizer(), kw_only=True)
 
     def token_count(self) -> Optional[int]:
         if isinstance(self.value, str):

@@ -1,10 +1,10 @@
 from attr import define, field
 import tiktoken
-from griptape.flow.tokenizers import Tokenizer
+from griptape.flow.tokenizers import BaseTokenizer
 
 
 @define(frozen=True)
-class TiktokenTokenizer(Tokenizer):
+class TiktokenTokenizer(BaseTokenizer):
     DEFAULT_MODEL = "gpt-3.5-turbo"
     DEFAULT_ENCODING = "cl100k_base"
     DEFAULT_MAX_TOKENS = 2049
@@ -25,7 +25,6 @@ class TiktokenTokenizer(Tokenizer):
     ]
 
     model: str = field(default=DEFAULT_MODEL, kw_only=True)
-    stop_sequence: str = field(default=Tokenizer.DEFAULT_STOP_SEQUENCE, kw_only=True)
 
     @property
     def encoding(self) -> tiktoken.Encoding:

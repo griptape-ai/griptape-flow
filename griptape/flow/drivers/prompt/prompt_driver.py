@@ -4,7 +4,7 @@ import time
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING
 from attr import define, field, Factory
-from griptape.flow.tokenizers import Tokenizer
+from griptape.flow.tokenizers import BaseTokenizer
 
 if TYPE_CHECKING:
     from griptape.flow.artifacts import TextOutput
@@ -17,7 +17,7 @@ class PromptDriver(ABC):
     type: str = field(default=Factory(lambda self: self.__class__.__name__, takes_self=True), kw_only=True)
     temperature: float = field(default=0.5, kw_only=True)
     model: str
-    tokenizer: Tokenizer
+    tokenizer: BaseTokenizer
 
     def run(self, **kwargs) -> TextOutput:
         for attempt in range(0, self.max_retries + 1):

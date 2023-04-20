@@ -1,12 +1,12 @@
 from abc import ABC, abstractmethod
-from typing import Optional
+from attr import define, field
 
 
-class Tokenizer(ABC):
+@define
+class BaseTokenizer(ABC):
     DEFAULT_STOP_SEQUENCE = "Observation:"
 
-    model: str
-    stop_sequence: str
+    stop_sequence: str = field(default=DEFAULT_STOP_SEQUENCE, kw_only=True)
 
     @property
     @abstractmethod

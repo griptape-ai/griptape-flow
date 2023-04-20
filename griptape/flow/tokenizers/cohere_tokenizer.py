@@ -1,28 +1,19 @@
 import cohere
 from attr import define, field
-from griptape.flow.tokenizers import Tokenizer
+from griptape.flow.tokenizers import BaseTokenizer
 
 
 @define(frozen=True)
-class CohereTokenizer(Tokenizer):
+class CohereTokenizer(BaseTokenizer):
     DEFAULT_MODEL = "xlarge"
     MAX_TOKENS = 2048
 
     model: str = field(default=DEFAULT_MODEL, kw_only=True)
-    stop_sequence: str = field(default=Tokenizer.DEFAULT_STOP_SEQUENCE, kw_only=True)
     client: cohere.Client = field(kw_only=True)
 
     @property
     def max_tokens(self) -> int:
         return self.MAX_TOKENS
-
-    def tokens_left(self, text: str) -> int:
-        diff = self.max_tokens - self.token_count(text)
-
-        if diff > 0:
-            return diff
-        else:
-            return 0
 
     def token_count(self, text: str) -> int:
         return len(self.encode(text))
