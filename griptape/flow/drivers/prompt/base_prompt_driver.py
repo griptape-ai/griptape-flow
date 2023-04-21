@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 
 @define
-class PromptDriver(ABC):
+class BasePromptDriver(ABC):
     max_retries: int = field(default=8, kw_only=True)
     retry_delay: float = field(default=1, kw_only=True)
     type: str = field(default=Factory(lambda self: self.__class__.__name__, takes_self=True), kw_only=True)

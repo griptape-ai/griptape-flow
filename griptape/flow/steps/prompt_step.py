@@ -6,14 +6,14 @@ from griptape.flow.steps import Step
 from griptape.flow.artifacts import TextOutput
 
 if TYPE_CHECKING:
-    from griptape.flow.drivers import PromptDriver
+    from griptape.flow.drivers import BasePromptDriver
 
 
 @define
 class PromptStep(Step):
     prompt_template: str = field(default="{{ args[0] }}")
     context: dict[str, any] = field(factory=dict, kw_only=True)
-    driver: Optional[PromptDriver] = field(default=None, kw_only=True)
+    driver: Optional[BasePromptDriver] = field(default=None, kw_only=True)
 
     def before_run(self) -> None:
         super().before_run()
@@ -30,7 +30,7 @@ class PromptStep(Step):
 
         self.structure.logger.info(f"Step {self.id}\nOutput: {self.output.value}")
 
-    def active_driver(self) -> PromptDriver:
+    def active_driver(self) -> BasePromptDriver:
         if self.driver is None:
             return self.structure.prompt_driver
         else:

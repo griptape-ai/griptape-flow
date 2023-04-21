@@ -1,12 +1,12 @@
 import cohere
 from attr import define, field, Factory
 from griptape.flow.artifacts import TextOutput
-from griptape.flow.drivers import PromptDriver
+from griptape.flow.drivers import BasePromptDriver
 from griptape.flow.tokenizers import CohereTokenizer
 
 
 @define
-class CoherePromptDriver(PromptDriver):
+class CoherePromptDriver(BasePromptDriver):
     api_key: str = field(kw_only=True)
     model: str = field(default=CohereTokenizer.DEFAULT_MODEL, kw_only=True)
     client: cohere.Client = field(

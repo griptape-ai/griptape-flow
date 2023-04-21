@@ -1,12 +1,12 @@
 from attr import define, field, Factory
 from transformers import pipeline, AutoTokenizer
 from griptape.flow.artifacts import TextOutput
-from griptape.flow.drivers import PromptDriver
+from griptape.flow.drivers import BasePromptDriver
 from griptape.flow.tokenizers import HuggingFaceTokenizer
 
 
 @define
-class HuggingFacePipelinePromptDriver(PromptDriver):
+class HuggingFacePipelinePromptDriver(BasePromptDriver):
     SUPPORTED_TASKS = ["text2text-generation", "text-generation"]
 
     model: str = field(kw_only=True)

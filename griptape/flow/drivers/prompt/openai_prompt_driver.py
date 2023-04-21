@@ -3,12 +3,12 @@ from typing import Optional
 import openai
 from attr import define, field, Factory
 from griptape.flow.artifacts import TextOutput
-from griptape.flow.drivers import PromptDriver
+from griptape.flow.drivers import BasePromptDriver
 from griptape.flow.tokenizers import TiktokenTokenizer
 
 
 @define
-class OpenAiPromptDriver(PromptDriver):
+class OpenAiPromptDriver(BasePromptDriver):
     api_type: str = field(default=openai.api_type, kw_only=True)
     api_version: Optional[str] = field(default=openai.api_version, kw_only=True)
     api_base: str = field(default=openai.api_base, kw_only=True)

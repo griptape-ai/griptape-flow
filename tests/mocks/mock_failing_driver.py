@@ -1,11 +1,11 @@
 from attr import define
-from griptape.flow.drivers import PromptDriver
+from griptape.flow.drivers import BasePromptDriver
 from griptape.flow.tokenizers import TiktokenTokenizer, BaseTokenizer
 from griptape.flow.artifacts import TextOutput
 
 
 @define
-class MockFailingDriver(PromptDriver):
+class MockFailingDriver(BasePromptDriver):
     max_failures: int
     current_attempt: int = 0
     model: str = "test-model"

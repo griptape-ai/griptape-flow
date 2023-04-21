@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Optional
 from attr import define, field
 from griptape.flow.utils import J2
-from griptape.flow.drivers import PromptDriver
+from griptape.flow.drivers import BasePromptDriver
 from griptape.flow.summarizers.summarizer import Summarizer
 
 
@@ -12,7 +12,7 @@ if TYPE_CHECKING:
 
 @define
 class PromptDriverSummarizer(Summarizer):
-    driver: PromptDriver = field(kw_only=True)
+    driver: BasePromptDriver = field(kw_only=True)
 
     def summarize(self, memory: PipelineMemory, runs: list[PipelineRun]) -> Optional[str]:
         try:
