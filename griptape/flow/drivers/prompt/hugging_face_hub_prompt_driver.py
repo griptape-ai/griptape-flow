@@ -45,7 +45,7 @@ class HuggingFaceHubPromptDriver(BasePromptDriver):
 
             if len(response) == 1:
                 return TextOutput(
-                    value=response[0]["generated_text"]
+                    value=response[0]["generated_text"].strip()
                 )
             else:
                 raise Exception("Completion with more than one choice is not supported yet.")

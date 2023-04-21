@@ -157,7 +157,7 @@ class TestPipeline:
     def test_step_output_token_count(self):
         text = "foobar"
 
-        assert TextOutput(text).token_count() == TiktokenTokenizer().token_count(text)
+        assert TextOutput(text).token_count(TiktokenTokenizer()) == TiktokenTokenizer().token_count(text)
 
     def test_run(self):
         step = PromptStep("test")

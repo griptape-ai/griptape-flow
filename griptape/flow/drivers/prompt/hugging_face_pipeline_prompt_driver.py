@@ -8,8 +8,13 @@ from griptape.flow.tokenizers import HuggingFaceTokenizer
 @define
 class HuggingFacePipelinePromptDriver(BasePromptDriver):
     SUPPORTED_TASKS = ["text2text-generation", "text-generation"]
+    DEFAULT_PARAMS = {
+        "return_full_text": False,
+        "num_return_sequences": 1
+    }
 
     model: str = field(kw_only=True)
+    params: dict = field(factory=dict, kw_only=True)
     tokenizer: HuggingFaceTokenizer = field(
         default=Factory(
             lambda self: HuggingFaceTokenizer(
@@ -27,21 +32,18 @@ class HuggingFacePipelinePromptDriver(BasePromptDriver):
         )
 
         if generator.task in self.SUPPORTED_TASKS:
+            extra_params = {
+                "pad_token_id": self.tokenizer.tokenizer.eos_token_id
+            }
+
             response = generator(
                 value,
-                num_return_sequences=1,
-                pad_token_id=self.tokenizer.tokenizer.eos_token_id
+                **(self.DEFAULT_PARAMS | extra_params | self.params)
             )
 
             if len(response) == 1:
-                output_text = response[0]["generated_text"]
-
-                if generator.task == "text-generation":
-                    # Text generation return includes the starter text (not text2text-generation though).
-                    output_text = output_text[len(value):]
-
                 return TextOutput(
-                    value=output_text
+                    value=response[0]["generated_text"].strip()
                 )
             else:
                 raise Exception("Completion with more than one choice is not supported yet.")

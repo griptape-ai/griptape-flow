@@ -30,7 +30,7 @@ class CoherePromptDriver(BasePromptDriver):
             generation = result.generations[0]
 
             return TextOutput(
-                value=generation.text,
+                value=generation.text.strip(),
                 meta=result.meta
             )
         else:
