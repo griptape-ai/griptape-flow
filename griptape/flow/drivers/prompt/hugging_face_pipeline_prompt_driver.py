@@ -1,5 +1,5 @@
 from attr import define, field, Factory
-from transformers import PreTrainedModel, pipeline, AutoTokenizer
+from transformers import pipeline, AutoTokenizer
 from griptape.flow.artifacts import TextOutput
 from griptape.flow.drivers import PromptDriver
 from griptape.flow.tokenizers import HuggingFaceTokenizer
@@ -30,6 +30,7 @@ class HuggingFacePipelinePromptDriver(PromptDriver):
             response = generator(
                 value,
                 num_return_sequences=1,
+                pad_token_id=self.tokenizer.tokenizer.eos_token_id
             )
 
             if len(response) == 1:
